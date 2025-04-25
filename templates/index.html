@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>簡易 ToDo</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <h1>📒 我的待辦事項</h1>
+      <div class="container">
+        <!-- 新增區塊 -->
+        <div class="left">
+          <form action="/add" method="POST">
+            <input
+              type="text"
+              name="title"
+              placeholder="輸入待辦事項標題"
+              required
+            />
+            <textarea name="content" placeholder="輸入待辦事項內文"></textarea>
+            <button type="submit">➕ 新增</button>
+          </form>
+        </div>
+
+        <!-- 清單區塊 -->
+        <div class="right">
+          <h2 class="section-title">📝 現有待辦事項</h2>
+          {{if .}}
+          <ul>
+            {{range .}}
+            <li class="task-item large" onclick="this.classList.toggle('open')">
+              <div class="task-header">
+                <span><!-- <strong>{{.ID}}</strong>. -->{{.Title}}</span>
+                <a class="delete-btn" href="/delete?id={{.ID}}">🗑️ 刪除</a>
+              </div>
+              <div class="task-content">{{.Content}}</div>
+            </li>
+            {{end}}
+          </ul>
+          {{else}}
+          <p class="empty">目前沒有待辦事項</p>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

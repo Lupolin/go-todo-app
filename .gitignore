@@ -1,0 +1,16 @@
+# 資料庫檔案
+todos.db
+
+# 可執行檔
+app
+*.exe
+
+# 開發工具設定
+.vscode/
+.idea/
+
+# Go 編譯中間產物（若有）
+vendor/
+
+# 環境變數檔案
+.env
